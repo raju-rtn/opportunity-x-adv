@@ -134,24 +134,24 @@ const DashboardView = ({ stats }) => (
         <h2 className="text-lg font-bold text-gray-800 mb-6">Usage Summary</h2>
         <div className="space-y-6 flex-1">
           <div className="flex items-center gap-4">
-            <div className="p-2 bg-purple-50 rounded-lg"><FileText className="w-5 h-5 text-[#8a2be2]" /></div>
+            <div className="p-2 bg-purple-50 rounded-lg"><FileText className="w-5 h-5 text-blue-500" /></div>
             <div>
               <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">Free Analysis Remaining</p>
-              <p className="text-xl font-bold text-[#d91d81]">3</p>
+              <p className="text-xl font-bold text-blue-500">3</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="p-2 bg-purple-50 rounded-lg"><FileSearch className="w-5 h-5 text-[#8a2be2]" /></div>
+            <div className="p-2 bg-purple-50 rounded-lg"><FileSearch className="w-5 h-5 text-blue-500" /></div>
             <div>
               <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">Paid Analysis Remaining</p>
-              <p className="text-xl font-bold text-[#d91d81]">0</p>
+              <p className="text-xl font-bold text-blue-500">0</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
             <div className="p-2 bg-blue-50 rounded-lg"><Building2 className="w-5 h-5 text-blue-500" /></div>
             <div>
               <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">Tenders Remaining</p>
-              <p className="text-xl font-bold text-[#d91d81]">15</p>
+              <p className="text-xl font-bold text-blue-500">15</p>
             </div>
           </div>
         </div>
@@ -1714,7 +1714,7 @@ export default function App() {
   }
 
   return (
-    <div className="flex h-screen bg-[#fcfcfd] overflow-hidden">
+    <div className="flex h-screen bg-blue-500 overflow-hidden">
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r border-gray-200 flex flex-col p-4 shrink-0 overflow-y-auto">
         <div className="mb-8 px-4 pt-2">
