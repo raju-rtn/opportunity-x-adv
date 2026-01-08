@@ -1,0 +1,294 @@
+
+{/* PARTNERSHIP MODAL */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
+          <div className="bg-white w-full max-w-xl rounded-[2.5rem] shadow-2xl overflow-hidden relative animate-in fade-in zoom-in duration-300">
+            <button 
+              onClick={closeModal}
+              className="absolute top-6 right-6 p-2 hover:bg-slate-100 rounded-full transition-colors z-10"
+            >
+              <X className="w-6 h-6 text-slate-400" />
+            </button>
+
+            {isSubmitted ? (
+              <div className="p-12 text-center space-y-6">
+                <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle2 className="w-10 h-10" />
+                </div>
+                <h3 className="text-3xl font-bold tracking-tight">Request Received</h3>
+                <p className="text-slate-500 font-medium leading-relaxed">
+                  Thank you for your interest in partnering with QistonPe. Our partnership team will review your details and reach out within 24 hours.
+                </p>
+                <button 
+                  onClick={closeModal}
+                  className="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all"
+                >
+                  Return to Portal
+                </button>
+              </div>
+            ) : (
+              <div className="p-8 md:p-12">
+                <div className="mb-8">
+                  <div className="flex items-center space-x-2 text-blue-600 font-bold text-[10px] uppercase tracking-widest mb-2">
+                    <Handshake className="w-4 h-4" />
+                    <span>Strategic Partnership</span>
+                  </div>
+                  <h3 className="text-3xl font-bold tracking-tight text-slate-900">Partner with <span className="text-blue-600">QistonPe</span></h3>
+                  <p className="text-slate-500 font-medium mt-2 text-sm">Join us in de-risking and scaling MSME credit in India.</p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Full Name</label>
+                      <div className="relative">
+                        <Users className="absolute left-4 top-3.5 w-4 h-4 text-slate-400" />
+                        <input required type="text" placeholder="e.g. Rahul Sharma" className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all" />
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Organization</label>
+                      <div className="relative">
+                        <Building className="absolute left-4 top-3.5 w-4 h-4 text-slate-400" />
+                        <input required type="text" placeholder="Institution Name" className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Work Email</label>
+                      <div className="relative">
+                        <Mail className="absolute left-4 top-3.5 w-4 h-4 text-slate-400" />
+                        <input required type="email" placeholder="rahul@bank.com" className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all" />
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Phone Number</label>
+                      <div className="relative">
+                        <Phone className="absolute left-4 top-3.5 w-4 h-4 text-slate-400" />
+                        <input required type="tel" placeholder="+91 98XXX XXXXX" className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Purpose of Partnership</label>
+                    <div className="relative">
+                      <Briefcase className="absolute left-4 top-3.5 w-4 h-4 text-slate-400" />
+                      <textarea required rows="3" placeholder="Briefly describe how you'd like to collaborate..." className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none"></textarea>
+                    </div>
+                  </div>
+
+                  <button type="submit" className="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-xl shadow-blue-200 hover:bg-blue-700 transition-all flex items-center justify-center space-x-2 group">
+                    <span>Submit Interest</span>
+                    <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </button>
+                </form>
+              </div>
+            )}
+          </div>
+        </div>
+      )}  
+
+
+            <a href="#leadershipteam" className="hover:text-blue-600 transition-colors">Leadership Team</a>
+
+
+
+
+
+      {/* Team Section */}
+      <section id="leadershipteam" className="py-15 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-16">
+            <h2 className="text-4xl font-bold">Execution-Focused Leadership</h2>
+            <p className="text-slate-500 mt-2 font-medium">Deep fintech & credit ecosystem expertise.</p>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-8">
+            {[
+              { 
+                name: "Ankit Bhatnagar", 
+                role: "Product & Technology", 
+                bio: "Ex-CPTO, Vayana, Mswipe; Co-Founder, Payso (acquired by Mswipe). PG in Banking Technology (IDRBT). Expert in supply chain finance rails.",
+                initials: "AB"
+              },
+              { 
+                name: "Sandeep Swamy", 
+                role: "Strategy & Risk", 
+                bio: "IIMA Alum. Previously Chief of Staff at Lentra AI. Specialist in digital lending clouds and cluster-led distribution models.",
+                initials: "SS"
+              }
+            ].map((member, i) => (
+              <div key={i} className="flex flex-col md:flex-row gap-8 p-10 bg-slate-50 rounded-[2.5rem] border border-slate-100 hover:bg-white hover:shadow-2xl transition-all group">
+                <div className="w-24 h-24 bg-slate-900 rounded-3xl flex-shrink-0 flex items-center justify-center text-white text-3xl font-black group-hover:bg-blue-600 transition-all">
+                  {member.initials}
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-2xl font-bold">{member.name}</h3>
+                    <p className="text-blue-600 font-bold text-xs uppercase tracking-[0.2em]">{member.role}</p>
+                  </div>
+                  <p className="text-sm text-slate-500 leading-relaxed font-medium">{member.bio}</p>
+                  <div className="pt-2">
+                    <Linkedin className="w-5 h-5 text-slate-300 hover:text-blue-600 cursor-pointer" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+
+                {/* <div className="bg-gray-800 p-10 rounded-[3rem] shadow-2xl shadow-blue-500/20">
+                    <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                      <ArrowDownCircle className="text-white w-6 h-6" />
+                    </div>
+                    <h4 className="text-xl font-bold mb-4">Direct Sourcing</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed mb-6">Disbursement directly to raw-material suppliers basis verified PIs. <span className="text-blue-400">Eliminates cash diversion risk entirely.</span></p>
+                    <ul className="space-y-3">
+                      {["80% Funding", "Verified Suppliers", "PO Linkage"].map((l, i) => (
+                        <li key={i} className="text-[10px] font-bold text-slate-300 flex items-center"><CheckCircle2 className="w-3 h-3 mr-2 text-blue-500" /> {l}</li>
+                      ))}
+                    </ul>
+                </div>
+
+                <div className="bg-gray-800 p-10 rounded-[3rem] shadow-2xl shadow-blue-500/20">
+                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center mb-6">
+                      <Activity className="text-blue-600 w-6 h-6" />
+                    </div>
+                    <h4 className="text-xl font-bold mb-4">Dynamic Underwriting</h4>
+                    <p className="text-xs text-blue-100 leading-relaxed mb-6">GST data, e-invoice and e-way bill based real-time monitoring. <span className="text-white">Portfolio health updated hourly.</span></p>
+                    <ul className="space-y-3">
+                      {["E-Invoice Reconcile", "E-Way Bill Track", "GST Filings"].map((l, i) => (
+                        <li key={i} className="text-[10px] font-bold text-white flex items-center"><CheckCircle2 className="w-3 h-3 mr-2 text-blue-200" /> {l}</li>
+                      ))}
+                    </ul>
+                </div>
+                
+                <div className="bg-gray-800 p-10 rounded-[3rem] shadow-2xl shadow-blue-500/20">
+                    <div className="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                      <ShieldCheck className="text-white w-6 h-6" />
+                    </div>
+                    <h4 className="text-xl font-bold mb-4">Controlled Repayment</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed mb-6">Escrow/Virtual Account repayments from OEM proceeds. <span className="text-emerald-400">Cashflow mapped to cycle.</span></p>
+                    <ul className="space-y-3">
+                      {["60-120 Days", "OEM Mapping", "NACH/Escrow"].map((l, i) => (
+                        <li key={i} className="text-[10px] font-bold text-slate-300 flex items-center"><CheckCircle2 className="w-3 h-3 mr-2 text-emerald-500" /> {l}</li>
+                      ))}
+                    </ul>
+                </div> */}
+
+
+
+      {/* Strategic Outlook */}
+      <section className="py-15 bg-slate-50 border-t border-slate-200 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+           <div className="bg-white rounded-[4rem] p-12 md:p-20 shadow-xl border border-slate-100 flex flex-col lg:flex-row gap-16 items-center">
+              <div className="lg:w-1/2 space-y-6">
+                <div className="bg-blue-600 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest inline-block">Future Ready</div>
+                <h2 className="text-4xl font-extrabold text-slate-900">Strategic Outlook</h2>
+                <p className="text-slate-600 text-lg font-medium leading-relaxed">
+                  QistonPe’s roadmap extends beyond financing into digital enablement — bid discovery, modernization support, and ESG readiness.
+                </p>
+                <div className="flex items-center space-x-4 pt-4">
+                   <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex-1 text-center">
+                     <div className="text-blue-600 font-black text-xl">Bid Support</div>
+                     <div className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Winning Tenders</div>
+                   </div>
+                   <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex-1 text-center">
+                     <div className="text-emerald-600 font-black text-xl">ESG Ready</div>
+                     <div className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Sustainable Scale</div>
+                   </div>
+                </div>
+              </div>
+              <div className="lg:w-1/2">
+                <div className="bg-slate-900 p-10 rounded-[3rem] text-white">
+                  <p className="text-xl italic font-medium leading-relaxed">
+                    "Positioning QistonPe as a bridge between industrial credit and sustainable growth, creating scalable opportunities for strategic partners."
+                  </p>
+                </div>
+              </div>
+           </div>
+        </div>
+      </section>
+
+
+              <button className="flex items-center justify-center space-x-2 border border-slate-300 text-slate-700 px-8 py-4 rounded-xl hover:bg-white transition-all font-bold">
+                <span>Partnership Deck</span>
+              </button>
+
+
+
+
+              <div className="space-y-6">
+                {[
+                  { title: "Inclusive Growth", desc: "Enabling sustainable industrial expansion via data-led financing." },
+                  { title: "Digital Enablement", desc: "Adopting tools for bid participation, payments, and compliance." },
+                  { title: "ESG Readiness", desc: "Laying foundations for ESG-aligned, sustainable supply chains." }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="w-6 h-6 rounded-full bg-blue-600 flex-shrink-0 flex items-center justify-center text-[10px] font-bold">0{i+1}</div>
+                    <div>
+                      <div className="font-bold text-sm">{item.title}</div>
+                      <div className="text-xs text-slate-400">{item.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+
+
+            <div className="grid grid-cols-1 gap-6">
+              <div className="p-8 bg-blue-50 rounded-3xl border border-blue-100">
+                <div className="flex items-center space-x-3 text-blue-600 mb-4">
+                  <ShieldCheck className="w-6 h-6" />
+                  <span className="font-black text-xs uppercase tracking-widest">QistonPe MetalCapital</span>
+                </div>
+                <h4 className="text-xl font-bold mb-4">Order-Backed Raw Material Finance</h4>
+                <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                  Bridge working-capital gaps through unsecured, order-backed financing routed directly to suppliers. 
+                  Zero collateral; loans from ₹5 Lakhs up to ₹2 Cr.
+                </p>
+              </div>
+            </div>
+
+
+
+              {/* <div className="p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100 hover:shadow-xl transition-all">
+                <Search className="w-8 h-8 text-blue-600 mb-6" />
+                <h4 className="font-bold text-xl mb-3">Bid Discovery</h4>
+                <p className="text-sm text-slate-500 leading-relaxed font-medium">
+                </p>
+              </div> */}
+              {/* <div className="p-8 bg-blue-600 rounded-[2.5rem] text-white hover:shadow-2xl hover:shadow-blue-200 transition-all">
+                <Zap className="w-8 h-8 text-blue-200 mb-6" />
+                <h4 className="font-bold text-xl mb-3">MetalCapital <br /> Order-Backed Raw Material Financing</h4>
+                <p className="text-sm text-blue-100 leading-relaxed font-medium">
+                  Unsecured working capital for verified POs. We ensure they have the raw materials to <span className="text-white font-bold">Fulfill</span> the business.
+                </p>
+              </div> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

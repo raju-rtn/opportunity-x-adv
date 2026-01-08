@@ -1,0 +1,278 @@
+// --- View: Company Details (Restored with Native Upload) ---
+
+// const CompanyDetailsView = ({ company, onBack, onSave }) => {
+//   const [activeSubTab, setActiveSubTab] = useState('profile'); 
+//   const [formData, setFormData] = useState({ ...company });
+//   const [isSaving, setIsSaving] = useState(false);
+//   const [showSaveToast, setShowSaveToast] = useState(false);
+//   const [expandedSection, setExpandedSection] = useState('Registration & Identity');
+  
+//   const [uploadedDocs, setUploadedDocs] = useState(company.documents || {}); 
+//   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+//   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
+//   const [activeDocItem, setActiveDocItem] = useState(null);
+  
+//   const fileInputRef = useRef(null);
+
+//   const handleProfileSave = (e) => {
+//     if (e) e.preventDefault();
+//     setIsSaving(true);
+//     setTimeout(() => {
+//       onSave({ ...formData, documents: uploadedDocs });
+//       setIsSaving(false);
+//       setShowSaveToast(true);
+//       setTimeout(() => setShowSaveToast(false), 3000);
+//     }, 800);
+//   };
+
+//   const handleDocumentClick = (item) => {
+//     setActiveDocItem(item);
+//     setIsUploadModalOpen(true);
+//   };
+
+//   const handleViewDocument = (item) => {
+//     setActiveDocItem(item);
+//     setIsPreviewModalOpen(true);
+//   };
+
+//   const handlePCFileSelect = (e) => {
+//     const file = e.target.files[0];
+//     if (!file || !activeDocItem) return;
+
+//     const newDoc = {
+//       name: activeDocItem.name,
+//       source: "Local PC",
+//       uploadDate: new Date().toLocaleDateString(),
+//       fileName: file.name,
+//       fileSize: (file.size / 1024 / 1024).toFixed(2) + " MB"
+//     };
+
+//     setUploadedDocs(prev => ({
+//       ...prev,
+//       [activeDocItem.name]: newDoc
+//     }));
+    
+//     setIsUploadModalOpen(false);
+//     e.target.value = ''; // Reset
+//   };
+
+//   const simulateCloudUpload = (source) => {
+//     if (!activeDocItem) return;
+//     const newDoc = {
+//       name: activeDocItem.name,
+//       source: source,
+//       uploadDate: new Date().toLocaleDateString(),
+//       fileName: `${activeDocItem.name.replace(/\s+/g, '_').toLowerCase()}_v1.pdf`,
+//       fileSize: "N/A"
+//     };
+//     setUploadedDocs(prev => ({ ...prev, [activeDocItem.name]: newDoc }));
+//     setIsUploadModalOpen(false);
+//   };
+
+//   const docSections = [
+//     {
+//       title: "Registration & Identity",
+//       icon: ShieldCheck,
+//       items: [
+//         { name: "Company Incorporation Certificate", desc: "Certificate of Incorporation from MCA" },
+//         { name: "PAN Card", desc: "Company PAN issued by Income Tax Dept." },
+//         { name: "GST Registration Certificate", desc: "GSTIN registration document" },
+//         { name: "MSME/Udyam Certificate", desc: "If registered as MSME" }
+//       ]
+//     },
+//     {
+//       title: "Financial Documents",
+//       icon: TrendingUp,
+//       items: [
+//         { name: "ITR (Last 3 Years)", desc: "Income Tax Returns with acknowledgement" },
+//         { name: "Audited Balance Sheets", desc: "CA certified financial statements" },
+//         { name: "Turnover Certificate", desc: "CA certified annual turnover" },
+//         { name: "Bank Statements", desc: "Last 6-12 months bank statements" }
+//       ]
+//     },
+//     {
+//         title: "Work Experience",
+//         icon: Briefcase,
+//         items: [
+//           { name: "Purchase Orders / Work Orders", desc: "Previous POs from clients" },
+//           { name: "Client Completion Certificates", desc: "Project completion/satisfaction letters" }
+//         ]
+//       }
+//   ];
+
+//   return (
+//     <div className="space-y-6 relative">
+//       <input 
+//         type="file" 
+//         ref={fileInputRef} 
+//         className="hidden" 
+//         accept=".pdf,.png,.jpg,.jpeg"
+//         onChange={handlePCFileSelect}
+//       />
+
+//       {showSaveToast && (
+//         <div className="fixed top-20 right-8 z-50 animate-in fade-in slide-in-from-top-4">
+//           <div className="bg-green-600 text-white px-6 py-3 rounded-xl shadow-lg flex items-center gap-3">
+//             <CheckCircle2 className="w-5 h-5" />
+//             <span className="font-bold">Company profile updated!</span>
+//           </div>
+//         </div>
+//       )}
+
+//       <Modal isOpen={isUploadModalOpen} onClose={() => setIsUploadModalOpen(false)} title={`Upload: ${activeDocItem?.name}`}>
+//         <div className="grid grid-cols-2 gap-4">
+//           <button onClick={() => fileInputRef.current.click()} className="flex flex-col items-center justify-center p-6 border border-gray-100 rounded-2xl hover:border-[#8a2be2] hover:bg-purple-50/30 transition-all group">
+//             <div className="p-4 rounded-full mb-3 bg-blue-50 group-hover:scale-110 transition-transform"><HardDrive className="w-8 h-8 text-blue-500" /></div>
+//             <span className="font-bold text-gray-700">My Computer</span>
+//             <span className="text-[10px] text-gray-400 uppercase mt-1">Local PC files</span>
+//           </button>
+//           <button onClick={() => simulateCloudUpload("Web Link")} className="flex flex-col items-center justify-center p-6 border border-gray-100 rounded-2xl hover:border-[#8a2be2] hover:bg-purple-50/30 transition-all group">
+//             <div className="p-4 rounded-full mb-3 bg-green-50 group-hover:scale-110 transition-transform"><LinkIcon className="w-8 h-8 text-green-500" /></div>
+//             <span className="font-bold text-gray-700">Web Link</span>
+//             <span className="text-[10px] text-gray-400 uppercase mt-1">Paste URL</span>
+//           </button>
+//           <button onClick={() => simulateCloudUpload("Google Drive")} className="flex flex-col items-center justify-center p-6 border border-gray-100 rounded-2xl hover:border-[#8a2be2] hover:bg-purple-50/30 transition-all group">
+//             <div className="p-4 rounded-full mb-3 bg-orange-50 group-hover:scale-110 transition-transform"><Cloud className="w-8 h-8 text-orange-500" /></div>
+//             <span className="font-bold text-gray-700">Google Drive</span>
+//             <span className="text-[10px] text-gray-400 uppercase mt-1">Cloud Access</span>
+//           </button>
+//           <button onClick={() => simulateCloudUpload("Dropbox")} className="flex flex-col items-center justify-center p-6 border border-gray-100 rounded-2xl hover:border-[#8a2be2] hover:bg-purple-50/30 transition-all group">
+//             <div className="p-4 rounded-full mb-3 bg-blue-600/10 group-hover:scale-110 transition-transform"><FolderPlus className="w-8 h-8 text-blue-600" /></div>
+//             <span className="font-bold text-gray-700">Dropbox</span>
+//             <span className="text-[10px] text-gray-400 uppercase mt-1">Shared Files</span>
+//           </button>
+//         </div>
+//       </Modal>
+
+//       <Modal isOpen={isPreviewModalOpen} onClose={() => setIsPreviewModalOpen(false)} title="Document Preview">
+//         {activeDocItem && (
+//           <div className="space-y-6">
+//             <div className="bg-gray-50 rounded-2xl aspect-[4/3] flex flex-col items-center justify-center border-2 border-dashed border-gray-200">
+//               <FileCode className="w-16 h-16 text-[#8a2be2] mb-4" />
+//               <p className="font-bold text-gray-800">{uploadedDocs[activeDocItem.name]?.fileName}</p>
+//               <p className="text-xs text-gray-400">{uploadedDocs[activeDocItem.name]?.fileSize}</p>
+//               <div className="mt-8 px-4 py-2 bg-purple-100 text-[#8a2be2] text-[10px] font-bold rounded-lg uppercase">System Preview: Full Access</div>
+//             </div>
+//             <div className="flex items-center justify-between p-4 bg-purple-50 rounded-xl">
+//               <div>
+//                 <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Metadata</p>
+//                 <h4 className="font-bold text-gray-800">{activeDocItem.name}</h4>
+//                 <p className="text-xs text-gray-500">Source: {uploadedDocs[activeDocItem.name]?.source} • {uploadedDocs[activeDocItem.name]?.uploadDate}</p>
+//               </div>
+//               <Button variant="outline" className="text-xs"><Download className="w-4 h-4" /> Download</Button>
+//             </div>
+//           </div>
+//         )}
+//       </Modal>
+
+//       <div className="flex items-center justify-between">
+//         <div className="flex items-center gap-4">
+//           <button onClick={onBack} className="p-2 hover:bg-gray-100 rounded-lg transition-colors"><ChevronLeft className="w-5 h-5 text-gray-500" /></button>
+//           <div>
+//             <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
+//               <span>My Companies</span>
+//               <ChevronRight className="w-3 h-3" />
+//               <span className="font-medium text-gray-900">{company.name}</span>
+//             </div>
+//             <h1 className="text-2xl font-bold text-gray-800">Company Management</h1>
+//           </div>
+//         </div>
+//       </div>
+
+//       <div className="flex border-b border-gray-200">
+//         {['profile', 'documents'].map(tab => (
+//           <button 
+//             key={tab}
+//             onClick={() => setActiveSubTab(tab)}
+//             className={`px-8 py-3 font-bold text-sm border-b-2 transition-all capitalize ${activeSubTab === tab ? 'border-[#8a2be2] text-[#8a2be2]' : 'border-transparent text-gray-400'}`}
+//           >
+//             {tab === 'profile' ? 'Company Profile' : 'Document Center'}
+//           </button>
+//         ))}
+//       </div>
+
+//       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4">
+//         {activeSubTab === 'profile' ? (
+//           <div className="lg:col-span-12">
+//             <form onSubmit={handleProfileSave} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+//               <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+//                 <div className="flex items-center gap-3">
+//                   <div className="p-2 bg-purple-100 rounded-lg"><Building2 className="w-5 h-5 text-[#8a2be2]" /></div>
+//                   <h2 className="text-lg font-bold text-gray-800">Edit Profile</h2>
+//                 </div>
+//                 <Button type="submit" disabled={isSaving} className="px-6">{isSaving ? 'Saving...' : <><Save className="w-4 h-4" /> Save Changes</>}</Button>
+//               </div>
+//               <div className="p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+//                 <div className="space-y-1">
+//                     <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Company Name</label>
+//                     <input className="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+//                 </div>
+//                 <div className="space-y-1">
+//                     <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Industry</label>
+//                     <input className="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none" value={formData.industry} onChange={e => setFormData({...formData, industry: e.target.value})} />
+//                 </div>
+//                 <div className="space-y-1">
+//                     <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Registration No</label>
+//                     <input className="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none" value={formData.registrationNo} onChange={e => setFormData({...formData, registrationNo: e.target.value})} />
+//                 </div>
+//               </div>
+//             </form>
+//           </div>
+//         ) : (
+//           <>
+//             <div className="lg:col-span-8 space-y-4 pb-20">
+//               {docSections.map((section, idx) => (
+//                 <div key={idx} className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+//                   <button onClick={() => setExpandedSection(expandedSection === section.title ? null : section.title)} className={`w-full flex items-center justify-between p-5 transition-colors ${expandedSection === section.title ? 'bg-purple-50/30' : 'hover:bg-gray-50'}`}>
+//                     <div className="flex items-center gap-3">
+//                       <div className={`p-2 rounded-lg ${expandedSection === section.title ? 'bg-white shadow-sm' : 'bg-gray-50'}`}><section.icon className={`w-5 h-5 ${expandedSection === section.title ? 'text-[#8a2be2]' : 'text-gray-400'}`} /></div>
+//                       <h3 className="font-bold text-gray-800">{section.title}</h3>
+//                     </div>
+//                     {expandedSection === section.title ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
+//                   </button>
+//                   {expandedSection === section.title && (
+//                     <div className="border-t border-gray-50 divide-y divide-gray-50">
+//                       {section.items.map((item, iIdx) => {
+//                         const isUploaded = uploadedDocs[item.name];
+//                         return (
+//                           <div key={iIdx} className="p-5 flex items-center justify-between group bg-white hover:bg-gray-50/30 transition-colors">
+//                             <div className="flex-1">
+//                               <h4 className="text-sm font-bold text-gray-700 flex items-center gap-2">
+//                                 {item.name}
+//                                 {isUploaded && <span className="bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Attached</span>}
+//                               </h4>
+//                               <p className="text-xs text-gray-400 mt-1">{isUploaded ? `File: ${uploadedDocs[item.name].fileName}` : item.desc}</p>
+//                             </div>
+//                             <div className="flex items-center gap-2">
+//                               {isUploaded ? (
+//                                 <>
+//                                   <button onClick={() => handleViewDocument(item)} className="p-2 text-gray-400 hover:text-[#8a2be2] hover:bg-purple-50 rounded-lg"><Eye className="w-4 h-4" /></button>
+//                                   <button onClick={() => {
+//                                       const n = {...uploadedDocs}; delete n[item.name]; setUploadedDocs(n);
+//                                   }} className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg"><Trash2 className="w-4 h-4" /></button>
+//                                 </>
+//                               ) : (
+//                                 <button onClick={() => handleDocumentClick(item)} className="flex items-center gap-2 px-3 py-1.5 text-xs font-bold border border-gray-200 rounded-lg text-gray-500 hover:border-[#8a2be2] hover:text-[#8a2be2] transition-all bg-white"><Upload className="w-3.5 h-3.5" /> Upload</button>
+//                               )}
+//                             </div>
+//                           </div>
+//                         );
+//                       })}
+//                     </div>
+//                   )}
+//                 </div>
+//               ))}
+//             </div>
+//             <div className="lg:col-span-4">
+//               <div className="bg-[#f8f7ff] rounded-2xl border border-purple-100 p-6 sticky top-24">
+//                 <div className="flex items-center gap-2 mb-4"><div className="p-2 bg-white rounded-lg"><FileCheck className="w-5 h-5 text-[#8a2be2]" /></div><h2 className="text-lg font-bold text-gray-800">Compliance</h2></div>
+//                 <div className="w-full bg-gray-200 rounded-full h-2 mb-8"><div className="bg-gradient-to-r from-[#d91d81] to-[#8a2be2] h-2 rounded-full transition-all duration-500" style={{ width: `${(Object.keys(uploadedDocs).length / 10) * 100}%` }}></div></div>
+//                 <Button onClick={handleProfileSave} disabled={isSaving} className="w-full py-3">{isSaving ? "Syncing..." : "Sync All Documents"}</Button>
+//               </div>
+//             </div>
+//           </>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
